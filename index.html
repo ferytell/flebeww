@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla SPA Routes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="main-page">this is main </div>
+
+    <div id="sidehover"  class="sidehover">
+        <button class="openbtn"  onclick="openNav()">&#9776; Profile</button>
+    </div>
+    <div id="root">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">close (x)</a>
+        <nav id="main-nav" class="sidebar">
+            <a href="/" onclick="route()">Home</a>
+            <a href="/about" onclick="route()">About</a>
+            <a href="/game" onclick="route()">Game</a> 
+        </nav>
+        <div id="main-page"> </div>
+    </div>
+   
+    <script src="scripts.js"></script>
+    
+</body>
+</html>

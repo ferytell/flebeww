@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: sans-serif;
+    margin: 0;
+    height: 100%;
+}
+
+p {
+    margin-block-start: 0;
+    text-indent: 1rem;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: lightgray;
+    width: 40px;
+    margin: 1.5rem 0 1rem 0;
+}
+
+/* ------------------------------------------------------------------------------------ */
+#sidehover button {
+    
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: red;
+    border-radius: 0 5px 5px 0;
+}
+#sidehover button:hover {
+    left: 0;
+}
+/*
+#root {
+    display: flex;
+    height: 100%;
+}
+*/
+
+
+#root{
+    height: 80%; 
+    width: 0; 
+    position: fixed; 
+    top: 120px;
+    left: 0;
+    background-color: wheat; 
+    overflow-x: hidden; 
+    padding-top: 70px; 
+    transition: 0.5s; /* 0.5 second waktu trasisi animasi */
+}
+
+#root .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: royalblue;
+  }
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: coral;
+    padding: 10px 15px;
+    border: none;
+  }
+  .openbtn:hover {
+    background-color: coral;
+  }
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    border-right: 1px solid lightgray;
+}
+/* ------------------------------------------------------------------------------------ */
+#main-page {
+    flex-grow: 1;
+}
+
+
+.sidebar > a {
+    margin: 0.5rem 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 1rem;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.socials-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.socials-card {
+    display: flex;
+    align-items: center;
+
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+
+    text-decoration: none;
+    color: unset;
+}
+
+.socials-card:hover {
+    background-color: lightgray;
+}
+
+.socials-card > i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
