@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/flebeww/static/css/main.0b357796.css",
+    "main.js": "/flebeww/static/js/main.b3e1da7a.js",
+    "index.html": "/flebeww/index.html",
+    "main.0b357796.css.map": "/flebeww/static/css/main.0b357796.css.map",
+    "main.b3e1da7a.js.map": "/flebeww/static/js/main.b3e1da7a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0b357796.css",
+    "static/js/main.b3e1da7a.js"
+  ]
+}
