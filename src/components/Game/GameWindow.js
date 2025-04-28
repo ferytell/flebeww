@@ -2,14 +2,14 @@ import { CanvasWindow } from "../Menu/CanvasWindow";
 import { EntityManager } from "../Entities/EntityManager";
 import { Player } from "../Entities/Player";
 import { Monster } from "../Entities/Monster";
-import { InputHandler } from "./InputHandler";
+//import { InputHandler } from "./InputHandler";
 
 export class GameWindow extends CanvasWindow {
   constructor(x, y, width, height, onClose) {
     super("Game", "XXX", x, y, width, height, onClose);
     this.entityManager = new EntityManager();
     this.lastTime = performance.now();
-    this.inputHandler = new InputHandler();
+    this.inputHandler = null; // Will be set later
     this.initGame();
 
     // Game-specific initialization
@@ -37,8 +37,14 @@ export class GameWindow extends CanvasWindow {
       this.entityManager.addEntity(monster);
     }
   }
+  setInputHandler(handler) {
+    console.log("setInputHandler called");
+    this.inputHandler = handler;
+  }
 
   update() {
+    if (!this.inputHandler) return;
+
     const currentTime = performance.now();
     const deltaTime = (currentTime - this.lastTime) / 1000;
     this.lastTime = currentTime;
