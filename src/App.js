@@ -1,21 +1,20 @@
+import { useState } from "react";
 import "./App.css";
-// import { NavBar } from "./components/NavBar";
-// import { Banner } from "./components/Banner";
-// import { Skills } from "./components/Skills";
-// import { Projects } from "./components/Projects";
-// import { Contact } from "./components/Contact";
-// import { Footer } from "./components/Footer";
-
+import Menu from "./components/Menu/Menu";
+import GameCanvas from "./components/GameCanvas/GameCanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import Menu from "./pages/menu";
-import CanvasMenu from "./components/Menu";
 
 function App() {
+  const [currentScene, setCurrentScene] = useState("home");
+
+  const handleSceneChange = (scene) => {
+    setCurrentScene(scene);
+  };
+
   return (
     <div className="App">
-      {/* <Menu /> */}
-
-      <CanvasMenu />
+      <Menu onSceneChange={handleSceneChange} currentScene={currentScene} />
+      <GameCanvas currentScene={currentScene} />
     </div>
   );
 }
