@@ -30,34 +30,53 @@ export default class GameScene {
     const input = this.inputHandler.getInput();
     this.player.handleInput(input);
 
-    // Update player position with collision detection
-    const originalX = this.player.x;
-    const originalY = this.player.y;
+    // Update player physics
+    this.player.update(deltaTime);
+
+    // // Update player position with collision detection
+    // const originalX = this.player.x;
+    // const originalY = this.player.y;
+
+    // Check and resolve collisions
+    CollisionSystem.resolveCollision(
+      this.player,
+      this.tileMap.map,
+      this.tileSize
+    );
 
     // Apply movement
-    this.player.x += this.player.direction.x * this.player.speed * deltaTime;
-    this.player.y += this.player.direction.y * this.player.speed * deltaTime;
+    // this.player.x += this.player.direction.x * this.player.speed * deltaTime;
+    // this.player.y += this.player.direction.y * this.player.speed * deltaTime;
+    // Keep player within canvas bounds (optional)
+    this.player.x = Math.max(
+      0,
+      Math.min(this.canvas.width - this.player.width, this.player.x)
+    );
+    this.player.y = Math.max(
+      0,
+      Math.min(this.canvas.height - this.player.height, this.player.y)
+    );
 
     // Check tile collisions
-    if (
-      CollisionSystem.checkTileCollision(
-        this.player,
-        this.tileMap.map,
-        this.tileSize
-      )
-    ) {
-      this.player.x = originalX;
-      this.player.y = originalY;
-    }
+    // if (
+    //   CollisionSystem.checkTileCollision(
+    //     this.player,
+    //     this.tileMap.map,
+    //     this.tileSize
+    //   )
+    // ) {
+    //   this.player.x = originalX;
+    //   this.player.y = originalY;
+    // }
 
-    // Check entity collisions
-    this.npcs.forEach((npc) => {
-      if (CollisionSystem.checkEntityCollision(this.player, npc)) {
-        this.player.x = originalX;
-        this.player.y = originalY;
-        npc.onCollision(); // NPC reaction to collision
-      }
-    });
+    // // Check entity collisions
+    // this.npcs.forEach((npc) => {
+    //   if (CollisionSystem.checkEntityCollision(this.player, npc)) {
+    //     this.player.x = originalX;
+    //     this.player.y = originalY;
+    //     npc.onCollision(); // NPC reaction to collision
+    //   }
+    // });
   }
 
   render() {
@@ -73,6 +92,39 @@ export default class GameScene {
     // Render player
     this.player.render(this.ctx);
 
+    // // Draw UI
+    // this.ctx.fillStyle = "#000";
+    // this.ctx.font = "16px Arial";
+    // this.ctx.textAlign = "left";
+    // this.ctx.fillText(
+    //   `Position: ${Math.floor(this.player.x)}, ${Math.floor(this.player.y)}`,
+    //   20,
+    //   30
+    // );
+
+    // Add to GameScene render()
+    this.ctx.strokeStyle = "red";
+    this.ctx.strokeRect(
+      this.player.x,
+      this.player.y,
+      this.player.width,
+      this.player.height
+    );
+
+    // Draw tile grid
+    this.ctx.strokeStyle = "rgba(0,0,0,0.2)";
+    for (let y = 0; y < this.tileMap.platforms.length; y++) {
+      for (let x = 0; x < this.tileMap.platforms[y].length; x++) {
+        if (this.tileMap.platforms[y][x] === 1) {
+          this.ctx.strokeRect(
+            x * this.tileSize,
+            y * this.tileSize,
+            this.tileSize,
+            this.tileSize
+          );
+        }
+      }
+    }
     // Draw UI
     this.ctx.fillStyle = "#000";
     this.ctx.font = "16px Arial";
@@ -82,5 +134,11 @@ export default class GameScene {
       20,
       30
     );
+    this.ctx.fillText(
+      `Velocity Y: ${this.player.velocityY.toFixed(1)}`,
+      20,
+      50
+    );
+    this.ctx.fillText(`Grounded: ${this.player.isGrounded}`, 20, 70);
   }
 }

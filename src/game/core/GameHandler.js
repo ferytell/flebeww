@@ -26,6 +26,7 @@ export default class GameHandler {
   update() {
     const currentTime = performance.now();
     const deltaTime = (currentTime - this.lastTime) / 1000;
+
     this.lastTime = currentTime;
 
     if (this.currentScene) {
